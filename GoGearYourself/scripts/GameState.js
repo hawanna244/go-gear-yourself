@@ -1,10 +1,10 @@
 class GameState {
 
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
+  #active = false;
 
   constructor(title) {
     this.title = title;
-    this.active = false;
   }
 
   //Initialize this state. Always call init() to set this state active.
@@ -12,7 +12,10 @@ class GameState {
   init() {
     Tools.log("Initializing GameState:"+this.title);
     this.beforeInit();
-    this.active = true;
+    let me = this;
+    this.loadAssets(function(){me.#active = true});
+    //TODO: Prevent setting active bevore all assets are done?
+    //Handle this via loading screen is quite okay I guess.
   }
   //Render this state.
   draw() {
@@ -29,7 +32,11 @@ class GameState {
   //Exit state.
   end() {
     this.beforeEnd();
-    this.active = false;
+    this.#active = false;
+  }
+
+  active() {
+    return this.#active;
   }
 
   //Functions to be overridden by subclasses:
@@ -72,5 +79,14 @@ class GameState {
   //Gets called within draw cycle.
   render() {
     throw new Error('You have to implement the method render in '+this.title+'!');
+  }
+  //callback if this state may get active
+  mayActivate() {
+    this.#active = true;
+  }
+  loadAssets(callback) {
+    //function to fill a member of this class with all required ressources for the main application.
+    callback();
+    throw new Error('You have to implement the method gatherAssets in '+this.title+'! Executing callback is required for the state to start.');
   }
 }

@@ -1,11 +1,10 @@
-class MainMenu extends GameState {
+class Loading extends GameState {
 
-  //MainMenu Class to provide first interaction with the game and basic information.
-  //Used to start and end the game.
+  //Loading state to display content while loading resources
 
   constructor() {
-    super("MainMenu");
-    Tools.log("Created MainMenu!",this);
+    super("Loading");
+    Tools.log("Created Loading Screen!",this);
   }
 
   beforeInit() {
@@ -26,9 +25,8 @@ class MainMenu extends GameState {
 
   }
   //function to fill a member of this class with all required ressources for the application.
-  //TODO
+  //gather from Tool.assets since these assets where preloaded for this specific state.
   loadAssets(cb) {
     cb();
   }
-
 }
