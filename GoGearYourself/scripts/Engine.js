@@ -39,7 +39,7 @@ function setup() {
   Tools.log("Debugging is enabled.");
 
   // put setup code here
-  createCanvas(318, 238); //prefent scrollbars
+  createCanvas(318, 238); //prevent scrollbars
   colorMode(HSB,360,1,1,1); //color setup
 
   //Build loading GameState to show.
@@ -107,7 +107,6 @@ function debugInfo() {
   //update Gamestates
   for(var gs in gameStates){
     if(gameStates[gs].active()) {
-      console.log(gameStates[gs].title);
       text("Current State: "+gameStates[gs].title,0,40);
     }
   }
