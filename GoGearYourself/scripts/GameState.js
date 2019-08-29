@@ -7,26 +7,28 @@ class GameState {
     this.active = false;
   }
 
-  //Initialize this state.
+  //Initialize this state. Always call init() to set this state active.
+  //The main app automatically updates this state afterwards.
   init() {
-    beforeInit();
+    Tools.log("Initializing GameState:"+this.title);
+    this.beforeInit();
     this.active = true;
   }
   //Render this state.
   draw() {
-    beforeDraw();
-      render();
-    afterDraw();
+    this.beforeDraw();
+      this.render();
+    this.afterDraw();
   }
   //Update this state.
   update() {
-    beforeUpdate();
-      logic();
-    afterUpdate();
+    this.beforeUpdate();
+      this.logic();
+    this.afterUpdate();
   }
   //Exit state.
   end() {
-    beforeEnd();
+    this.beforeEnd();
     this.active = false;
   }
 
@@ -34,7 +36,7 @@ class GameState {
   //Prequesites before initialization.
   beforeInit() {
     //Should be overridden.
-    throw new Error('You have to implement the method beforeInit!');
+    throw new Error('You have to implement the method beforeInit in '+this.title+'!');
   }
   //Executed before draw.
   beforeDraw() {
@@ -59,16 +61,16 @@ class GameState {
   //Prepare state to sleep before the application stops using it.
   beforeEnd() {
     //Should be overridden.
-    throw new Error('You have to implement the method beforeEnd!');
+    throw new Error('You have to implement the method beforeEnd in '+this.title+'!');
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
   logic() {
-    throw new Error('You have to implement the method logic!');
+    throw new Error('You have to implement the method logic in '+this.title+'!');
   }
   //Main render function of this gamestate.
   //Gets called within draw cycle.
   render() {
-    throw new Error('You have to implement the method render!');
+    throw new Error('You have to implement the method render in '+this.title+'!');
   }
 }
