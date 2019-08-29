@@ -18,7 +18,7 @@ class MainMenu extends GameState {
   //Main logic of this gamestate.
   //Gets called within update cycle.
   logic() {
-
+    
   }
   //Main render function of this gamestate.
   //Gets called within draw cycle.

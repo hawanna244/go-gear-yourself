@@ -51,8 +51,8 @@ function draw() {
 
   // put drawing code here
   for(var gs in gameStates){
-    if(gs.active) {
-      gs.draw();
+    if(gameStates[gs].active) {
+      gameStates[gs].draw();
     }
   }
 
@@ -66,8 +66,8 @@ function update() {
   //update game logic
   //update Gamestates
   for(var gs in gameStates){
-    if(gs.active) {
-      gs.update();
+    if(gameStates[gs].active) {
+      gameStates[gs].update();
     }
   }
 }
@@ -78,5 +78,11 @@ function debugInfo() {
   color(0,0,0,1);
   text("GoGearYourself Debug",0,0);
   text("Version: "+version,0,20);
+  //update Gamestates
+  for(var gs in gameStates){
+    if(gameStates[gs].active) {
+      text("Current State: "+gameStates[gs].title,0,40);
+    }
+  }
   pop();
 }
