@@ -4,6 +4,8 @@
   Created for ClockworkPi GameJam 2019 Q3
 */
 
+//Global objects
+
 function setup() {
   // put setup code here
   createCanvas(318, 238); //prefent scrollbars
