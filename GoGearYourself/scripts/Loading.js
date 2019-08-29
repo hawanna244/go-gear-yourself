@@ -8,11 +8,11 @@ class Loading extends GameState {
   }
 
   beforeInit() {
-    Tools.log("Going into MainMenu soon.",this);
+    Tools.log("Going into Loading soon.",this);
   }
 
   beforeEnd() {
-    Tools.log("Exiting MainMenu soon.",this);
+    Tools.log("Exiting Loading soon.",this);
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
