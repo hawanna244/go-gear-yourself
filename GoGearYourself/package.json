@@ -14,7 +14,7 @@
     "shift",
     "gears"
   ],
-  "author": "Frank Hasenbalg, Felix Bukatz, Moritz Bukatz, Pascal-Domenic Hanke",
+  "author": "Frank Hasenbalg, Felix Bukatz, Moritz Bukatz, Pascal-Domenic Hanke, Gerrit Thielke",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/hawanna244/go-gear-yourself/issues"

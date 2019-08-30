@@ -14,6 +14,10 @@ class Loading extends GameState {
   beforeEnd() {
     Tools.log("Exiting Loading soon.",this);
   }
+  //setup this scene.
+  start() {
+
+  }
   //Main logic of this gamestate.
   //Gets called within update cycle.
   logic() {

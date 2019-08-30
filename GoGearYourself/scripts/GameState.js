@@ -4,7 +4,8 @@ class GameState {
   //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
 
   #active = false; //should this state be handled?
-  #gameObjects = [] //all gameObjects within this state. Have to be registered.
+  #gameObjects = []; //all gameObjects within this state. Have to be registered.
+  #loadingWallpaper = {};
 
   constructor(title) { //build a gamestate
     this.title = title;
@@ -14,12 +15,22 @@ class GameState {
   //The main app automatically updates this state afterwards.
   init() {
     Tools.log("Initializing GameState:"+this.title);
+    this.displayLoadingState();
     this.beforeInit();
     let me = this;
-    this.loadAssets(function(){me.#active = true});
+    this.loadAssets(function(){
+      me.#active = true;
+      me.start();
+    });
     //TODO: Prevent setting active bevore all assets are done?
     //Handle this via loading screen is quite okay I guess.
   }
+
+  //This function is required to be overridden by the subclass to initialize the current scene.
+  start() {
+    throw new Error('⚠️ You have to implement the method start in '+this.title+'! It is required to setup the scene and initial game logic.');
+  }
+
   //Render this state.
   draw() {
     this.beforeDraw();
@@ -69,7 +80,14 @@ class GameState {
   active() {
     return this.#active;
   }
-
+  //Just show aloading screen image
+  displayLoadingState() {
+    push();
+      background(0,0,0,1);
+      translate(0,0);
+      image(Tools.assets.loadingWallpaper,0,0,Tools.assets.loadingWallpaper.width*Tools.const.pixelFactor,Tools.assets.loadingWallpaper.height*Tools.const.pixelFactor);
+    pop();
+  }
   //Functions to be overridden by subclasses:
   //Prequesites before initialization.
   beforeInit() {
@@ -95,6 +113,15 @@ class GameState {
   afterUpdate() {
     //May be overridden.
     //throw new Error('You have to implement the method afterUpdate!');
+  }
+  //gets called from engine if key was pressed.
+  onKeyPressed(keyCode) {
+    if(debug) {
+      Tools.log('Key pressed in GameObject '+this.constructor.name+'.⚠️ This GameObject doesn`t handle this event! KeyCode: '+keyCode);
+    }
+    this.#gameObjects.forEach(function(go){
+      go.onKeyPressed(keyCode);
+    });
   }
   //Prepare state to sleep before the application stops using it.
   beforeEnd() {
