@@ -13,7 +13,8 @@ class Sprite {
 
   render() {
     if(img) {
-      image(0,0,img);
+      imageMode(CENTER);
+      image(img,0,0);
     }
   }
 

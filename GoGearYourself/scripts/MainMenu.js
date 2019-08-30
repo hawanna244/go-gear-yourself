@@ -27,7 +27,7 @@ class MainMenu extends GameState {
   //Main render function of this gamestate.
   //Gets called within draw cycle.
   render() {
-  
+    
   }
   //function to fill a member of this class with all required ressources for the application.
   //TODO
