@@ -2,9 +2,11 @@ class GameState {
 
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
   //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
-  #active = false;
 
-  constructor(title) {
+  #active = false; //should this state be handled?
+  #gameObjects = [] //all gameObjects within this state. Have to be registered.
+
+  constructor(title) { //build a gamestate
     this.title = title;
   }
 
@@ -21,13 +23,19 @@ class GameState {
   //Render this state.
   draw() {
     this.beforeDraw();
+      //display overridden style
       this.render();
+      //display objects
+      this.gameObjectRender();
     this.afterDraw();
   }
   //Update this state.
   update() {
     this.beforeUpdate();
+      //update this states logic
       this.logic();
+      //update all gameObjects automati
+      this.gameObjectUpdate();
     this.afterUpdate();
   }
   //Exit state.
@@ -35,7 +43,29 @@ class GameState {
     this.beforeEnd();
     this.#active = false;
   }
-
+  //Spawn a game object and register it in this state after creation.
+  //The gameObject needs to be added to the state and can be prepared before to ensure correct behaviour.
+  spawn(go) {
+    this.#gameObjects.push(go);
+  }
+  //destroy a game object.
+  destroy(go) {
+    let index = this.#gameObjects.indexOf(go);
+    if(index !== -1) {
+      this.#gameObjects.splice(index, 1);
+    }
+  }
+  gameObjectUpdate() {
+    this.#gameObjects.forEach(function(go){
+      go.update();
+    });
+  }
+  gameObjectRender() {
+    this.#gameObjects.forEach(function(go){
+      go.render();
+    });
+  }
+  //tell if this state is active or not
   active() {
     return this.#active;
   }
