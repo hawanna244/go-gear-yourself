@@ -114,6 +114,10 @@ class GameState {
     //May be overridden.
     //throw new Error('You have to implement the method afterUpdate!');
   }
+  //detach this state and move to next one
+  moveToState(to) {
+    Tools.stateTransit(this,to);
+  }
   //gets called from engine if key was pressed.
   onKeyPressed(keyCode) {
     if(debug) {
@@ -142,7 +146,7 @@ class GameState {
   mayActivate() {
     this.#active = true;
   }
-  loadAssets(callback) {
+  async loadAssets(callback) {
     //function to fill a member of this class with all required ressources for the main application.
     callback();
     throw new Error('⚠️ You have to implement the method gatherAssets in '+this.title+'! ⚠️ Executing callback is required for the state to start. Otherwise it will not activate after all resources where loaded.');

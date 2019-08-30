@@ -14,6 +14,13 @@ var Tools = { //Some global tools.
     logo:null,
     loadingWallpaper:null,
   },
+  //used for external state calls.
+  stateTransit:function(from,toName) {
+    from.end();
+    if(gameStates.hasOwnProperty(toName)) {
+      gameStates[toName].init();
+    }
+  },
   log:function(msg,caller) {
     if(debug) {
       if(!caller) {
@@ -57,11 +64,12 @@ function setup() {
 
   //Build other GameStates
   Tools.log("Building GameStates...");
-  gameStates.mainMenu = new MainMenu();
+  gameStates.MainMenu = new MainMenu();
+  gameStates.Game = new Game();
 
   //Launch
   Tools.log("Launching MainMenu...");
-  gameStates.mainMenu.init();
+  gameStates.MainMenu.init();
 }
 
 function draw() {

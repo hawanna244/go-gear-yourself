@@ -6,41 +6,41 @@ class GameObject {
   #posY = 0;
   #oldPosX = 0;
   #oldPosY = 0;
-  #gWidth = 0;
-  #gHeight = 0;
   #sprite = {};
   #animation = {};
 
   //assets have to be preloaded before construction
-  constructor(sprite,animation) {
+  constructor(sprite,animation = null) {
     this.#sprite = sprite;
     this.#animation = animation;
+    this.#posX = width/2;
+    this.#posY = height/2;
   }
 
   //update this gameobject
   update() {
     this.behaviour();
-    if(sprite) {
-      sprite.update();
+    if(this.#sprite) {
+      this.#sprite.update();
     }
-    if(animation) {
-      animation.update();
+    if(this.#animation) {
+      this.#animation.update();
     }
   }
 
   //display this game object
   render() {
     push();
-    translate(posX,posY);
-    if(sprite) { //if sprite is present
-      sprite.render();
+    translate(this.#posX,this.#posY);
+    if(this.#sprite) { //if sprite is present
+      this.#sprite.render();
     }
-    else if(animation) { //if animation is present
-      animation.render();
+    else if(this.#animation) { //if animation is present
+      this.#animation.render();
     }
     pop();
     if(debug) {
-      debug();
+      this.debug();
     }
   }
   //Animation
@@ -54,7 +54,7 @@ class GameObject {
 
   //this function needs to be overridden to implement the subclass gameobject behaviour.
   behaviour() {
-    throw Error('⚠️ You have to implement the method behaviour in '+this.constructor.name+' before using this subclass. GameObjects need the behaviour function to implement their logic.');
+    Tools.log('⚠️ You should implement the method behaviour in '+this.constructor.name+' before using GameObjects. GameObjects need the behaviour function to implement their logic.');
   }
   //gets called from engine if key was pressed.
   onKeyPressed(keyCode) {
@@ -66,11 +66,16 @@ class GameObject {
   //render some boundaries
   debug() {
     push();
-    translate(posX,posY);
+    translate(this.#posX,this.#posY);
     rectMode(CENTER);
-    fill(0,1,1,1);
-    rect(0,0,gWidth,gHeight);
+    noFill();
+    stroke(0,1,1,1);
+    if(this.#sprite) {
+      rect(0,0,this.#sprite.getScreenWidth(),this.#sprite.getScreenHeight());
+    }
+    else if(this.#animation) {
+      rect(0,0,this.#animation.getScreenWidth(),this.#animation.getScreenHeight());
+    }
     pop();
   }
-
 }

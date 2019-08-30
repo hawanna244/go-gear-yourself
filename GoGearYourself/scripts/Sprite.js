@@ -12,10 +12,21 @@ class Sprite {
   }
 
   render() {
-    if(img) {
+    if(this.#img) {
       imageMode(CENTER);
-      image(img,0,0);
+      image(this.#img,0,0,this.#img.width*Tools.const.pixelFactor,this.#img.height*Tools.const.pixelFactor);
     }
   }
-
+  getWidth() {
+    return this.#img.width;
+  }
+  getHeight() {
+    return this.#img.height;
+  }
+  getScreenWidth() {
+    return this.getWidth()*Tools.const.pixelFactor;
+  }
+  getScreenHeight() {
+    return this.getHeight()*Tools.const.pixelFactor;
+  }
 }
