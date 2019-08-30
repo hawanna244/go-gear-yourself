@@ -1,6 +1,7 @@
 class GameState {
 
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
+  //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
   #active = false;
 
   constructor(title) {
@@ -68,17 +69,17 @@ class GameState {
   //Prepare state to sleep before the application stops using it.
   beforeEnd() {
     //Should be overridden.
-    throw new Error('You have to implement the method beforeEnd in '+this.title+'!');
+    throw new Error('⚠️ You have to implement the method beforeEnd in '+this.title+'!');
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
   logic() {
-    throw new Error('You have to implement the method logic in '+this.title+'!');
+    throw new Error('⚠️ You have to implement the method logic in '+this.title+'!');
   }
   //Main render function of this gamestate.
   //Gets called within draw cycle.
   render() {
-    throw new Error('You have to implement the method render in '+this.title+'!');
+    throw new Error('⚠️ You have to implement the method render in '+this.title+'!');
   }
   //callback if this state may get active
   mayActivate() {
@@ -87,6 +88,6 @@ class GameState {
   loadAssets(callback) {
     //function to fill a member of this class with all required ressources for the main application.
     callback();
-    throw new Error('You have to implement the method gatherAssets in '+this.title+'! Executing callback is required for the state to start.');
+    throw new Error('⚠️ You have to implement the method gatherAssets in '+this.title+'! ⚠️ Executing callback is required for the state to start. Otherwise it will not activate after all resources where loaded.');
   }
 }
