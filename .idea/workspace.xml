@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="GoGearYourself" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ce1cf862-9d4b-4487-a27a-1dcb42736601" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GoGearYourself.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GoGearYourself.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Sprite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Tools.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Tools.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/GoGearYourself.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/GoGearYourself.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/Tools.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +23,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/core.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
