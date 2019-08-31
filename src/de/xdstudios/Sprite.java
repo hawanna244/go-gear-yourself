@@ -4,7 +4,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 
-public class Sprite extends PApplet{
+public class Sprite {
 
 
   //The Sprite class holds an Image and provides some useful image manipulation functions.
@@ -19,8 +19,8 @@ public class Sprite extends PApplet{
 
   void render() {
     if(this.img != null) {
-      imageMode(CENTER);
-      image(this.img,0,0,this.img.width*Tools.pixelFactor(),this.img.height*Tools.pixelFactor());
+      Tools.app.imageMode(Tools.app.CENTER);
+      Tools.app.image(this.img,0,0,this.img.width*Tools.pixelFactor(),this.img.height*Tools.pixelFactor());
     }
   }
   public float getWidth() {

@@ -6,9 +6,10 @@ import processing.core.PImage;
 import java.util.ArrayList;
 
 
-public class Tools extends PApplet{
+public class Tools {
 
   static boolean debug = true;
+  public static GoGearYourself app;
 
   //some asset helper vars
   public static PImage loadingWallpaper;
@@ -27,10 +28,10 @@ public class Tools extends PApplet{
   
   //Logging
   public static void log(String msg, Object caller) {
-    println(caller.getClass().getName()+": "+msg);
+    app.println(caller.getClass().getName()+": "+msg);
   }
   public static void log(String msg) {
-    println("System: "+msg);
+    app.println("System: "+msg);
   }
   
   //global image scaling

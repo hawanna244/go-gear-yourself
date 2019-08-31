@@ -12,7 +12,7 @@ public class GoGearYourself extends PApplet {
 
   public void settings(){
     size(320,240);
-//    colorMode(HSB,360,1,1,1); //color setup
+//
     noSmooth();
   }
 /*
@@ -32,12 +32,11 @@ public void setup() {
 
   Tools.log("⚙️ Welcome to Go Gear Yourself! ⚙️");
   Tools.log("Debugging is enabled.");
-
+  colorMode(HSB,360,1,1,1); //color setup
   // put setup code here
   Tools.log("Viewport: Width:"+width+" Height:"+height);
+  Tools.app = this;
 
-  
-  //Build loading GameState to show.
   //Manual State handling outside of update/draw to show something before other assets are loaded.
   Tools.log("Loading resources...");
 

@@ -3,7 +3,7 @@ package de.xdstudios;
 import processing.core.PApplet;
 
 
-public class GameObject extends PApplet{
+public class GameObject {
 
   //Subclasses of GameObject define the logic that is required to interact with other GameObjects.
   //This abstract class handles some events and required fields like coordinates and animations/sprites.
@@ -14,13 +14,13 @@ public class GameObject extends PApplet{
   //assets have to be preloaded before construction
   public GameObject(Sprite sprite) {
     this.sprite = sprite;
-    this.posX = width/2;
-    this.posY = height/2;
+    this.posX = Tools.app.width/2;
+    this.posY = Tools.app.height/2;
   }
   public GameObject(Animation animation) {
     this.animation = animation;
-    this.posX = width/2;
-    this.posY = height/2;
+    this.posX = Tools.app.width/2;
+    this.posY = Tools.app.height/2;
   }
 
   //update this gameobject
@@ -36,15 +36,15 @@ public class GameObject extends PApplet{
 
   //display this game object
   public void render() {
-    pushMatrix();
-    translate(this.posX,this.posY);
+    Tools.app.pushMatrix();
+    Tools.app.translate(this.posX,this.posY);
     if(this.sprite != null) { //if sprite is present
       this.sprite.render();
     }
     else if(this.animation != null) { //if animation is present
       this.animation.render();
     }
-    popMatrix();
+    Tools.app.popMatrix();
     if(Tools.debug) {
       this.debug();
     }
@@ -71,19 +71,19 @@ public class GameObject extends PApplet{
 
   //render some boundaries
   void debug() {
-    pushMatrix();
-    pushStyle();
-    translate(this.posX,this.posY);
-    rectMode(CENTER);
-    noFill();
-    stroke(0,1,1,1);
+    Tools.app.pushMatrix();
+    Tools.app.pushStyle();
+    Tools.app.translate(this.posX,this.posY);
+    Tools.app.rectMode(Tools.app.CENTER);
+    Tools.app.noFill();
+    Tools.app.stroke(0,1,1,1);
     if(this.sprite != null) {
-      rect(0,0,this.sprite.getScreenWidth(),this.sprite.getScreenHeight());
+      Tools.app.rect(0,0,this.sprite.getScreenWidth(),this.sprite.getScreenHeight());
     }
     else if(this.animation != null) {
-      rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
+      Tools.app.rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
     }
-    popStyle();
-    popMatrix();
+    Tools.app.popStyle();
+    Tools.app.popMatrix();
   }
 }

@@ -6,7 +6,7 @@ import processing.core.PImage;
 import java.util.ArrayList;
 
 
-public class GameState extends PApplet implements  IState{
+public class GameState  implements  IState{
 
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
   //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
@@ -87,11 +87,11 @@ public class GameState extends PApplet implements  IState{
   }
   //Just show a loading screen image
   public void displayLoadingState() {
-    pushMatrix();
-      background(0,0,0,1);
-      translate(0,0);
-      image(loadingWallpaper,0,0,loadingWallpaper.width*Tools.pixelFactor(),loadingWallpaper.height*Tools.pixelFactor());
-    popMatrix();
+    Tools.app.pushMatrix();
+      Tools.app.background(0,0,0,1);
+      Tools.app.translate(0,0);
+      Tools.app.image(loadingWallpaper,0,0,loadingWallpaper.width*Tools.pixelFactor(),loadingWallpaper.height*Tools.pixelFactor());
+    Tools.app.popMatrix();
   }
   //Functions to be overridden by subclasses:
   //Prequesites before initialization.

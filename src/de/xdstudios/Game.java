@@ -46,11 +46,11 @@ public class Game extends GameState {
   //function to fill a member of this class with all required ressources for the application.
   //TODO
   void loadAssets() {
-    gearImage = loadImage("assets/img/gameobjects/gear.png");
+    gearImage = Tools.app.loadImage("assets/img/gameobjects/gear.png");
   }
 
   //override
   public void onKeyPressed(int kc) {
-    println("kc: "+kc);
+    Tools.app.println("kc: "+kc);
   }
 }
