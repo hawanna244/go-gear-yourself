@@ -1,10 +1,10 @@
 class Sprite {
 
   //The Sprite class holds an Image and provides some useful image manipulation functions.
-  #img = {};
+  img = {};
 
   constructor(img) {
-    this.#img = img;
+    this.img = img;
   }
 
   update() {
@@ -12,16 +12,16 @@ class Sprite {
   }
 
   render() {
-    if(this.#img) {
+    if(this.img) {
       imageMode(CENTER);
-      image(this.#img,0,0,this.#img.width*Tools.const.pixelFactor,this.#img.height*Tools.const.pixelFactor);
+      image(this.img,0,0,this.img.width*Tools.const.pixelFactor,this.img.height*Tools.const.pixelFactor);
     }
   }
   getWidth() {
-    return this.#img.width;
+    return this.img.width;
   }
   getHeight() {
-    return this.#img.height;
+    return this.img.height;
   }
   getScreenWidth() {
     return this.getWidth()*Tools.const.pixelFactor;

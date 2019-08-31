@@ -3,9 +3,9 @@ class GameState {
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
   //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
 
-  #active = false; //should this state be handled?
-  #gameObjects = []; //all gameObjects within this state. Have to be registered.
-  #loadingWallpaper = {};
+  active = false; //should this state be handled?
+  gameObjects = []; //all gameObjects within this state. Have to be registered.
+  loadingWallpaper = {};
 
   constructor(title) { //build a gamestate
     this.title = title;
@@ -19,7 +19,7 @@ class GameState {
     this.beforeInit();
     let me = this;
     this.loadAssets(function(){
-      me.#active = true;
+      me.active = true;
       me.start();
     });
     //TODO: Prevent setting active bevore all assets are done?
@@ -52,33 +52,33 @@ class GameState {
   //Exit state.
   end() {
     this.beforeEnd();
-    this.#active = false;
+    this.active = false;
   }
   //Spawn a game object and register it in this state after creation.
   //The gameObject needs to be added to the state and can be prepared before to ensure correct behaviour.
   spawn(go) {
-    this.#gameObjects.push(go);
+    this.gameObjects.push(go);
   }
   //destroy a game object.
   destroy(go) {
-    let index = this.#gameObjects.indexOf(go);
+    let index = this.gameObjects.indexOf(go);
     if(index !== -1) {
-      this.#gameObjects.splice(index, 1);
+      this.gameObjects.splice(index, 1);
     }
   }
   gameObjectUpdate() {
-    this.#gameObjects.forEach(function(go){
+    this.gameObjects.forEach(function(go){
       go.update();
     });
   }
   gameObjectRender() {
-    this.#gameObjects.forEach(function(go){
+    this.gameObjects.forEach(function(go){
       go.render();
     });
   }
   //tell if this state is active or not
   active() {
-    return this.#active;
+    return this.active;
   }
   //Just show aloading screen image
   displayLoadingState() {
@@ -123,7 +123,7 @@ class GameState {
     if(debug) {
       Tools.log('Key pressed in GameObject '+this.constructor.name+'.⚠️ This GameObject doesn`t handle this event! KeyCode: '+keyCode);
     }
-    this.#gameObjects.forEach(function(go){
+    this.gameObjects.forEach(function(go){
       go.onKeyPressed(keyCode);
     });
   }
@@ -144,7 +144,7 @@ class GameState {
   }
   //callback if this state may get active
   mayActivate() {
-    this.#active = true;
+    this.active = true;
   }
   async loadAssets(callback) {
     //function to fill a member of this class with all required ressources for the main application.

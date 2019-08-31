@@ -2,41 +2,41 @@ class GameObject {
 
   //Subclasses of GameObject define the logic that is required to interact with other GameObjects.
   //This abstract class handles some events and required fields like coordinates and animations/sprites.
-  #posX = 0;
-  #posY = 0;
-  #oldPosX = 0;
-  #oldPosY = 0;
-  #sprite = {};
-  #animation = {};
+  posX = 0;
+  posY = 0;
+  oldPosX = 0;
+  oldPosY = 0;
+  sprite = {};
+  animation = {};
 
   //assets have to be preloaded before construction
   constructor(sprite,animation = null) {
-    this.#sprite = sprite;
-    this.#animation = animation;
-    this.#posX = width/2;
-    this.#posY = height/2;
+    this.sprite = sprite;
+    this.animation = animation;
+    this.posX = width/2;
+    this.posY = height/2;
   }
 
   //update this gameobject
   update() {
     this.behaviour();
-    if(this.#sprite) {
-      this.#sprite.update();
+    if(this.sprite) {
+      this.sprite.update();
     }
-    if(this.#animation) {
-      this.#animation.update();
+    if(this.animation) {
+      this.animation.update();
     }
   }
 
   //display this game object
   render() {
     push();
-    translate(this.#posX,this.#posY);
-    if(this.#sprite) { //if sprite is present
-      this.#sprite.render();
+    translate(this.posX,this.posY);
+    if(this.sprite) { //if sprite is present
+      this.sprite.render();
     }
-    else if(this.#animation) { //if animation is present
-      this.#animation.render();
+    else if(this.animation) { //if animation is present
+      this.animation.render();
     }
     pop();
     if(debug) {
@@ -45,11 +45,11 @@ class GameObject {
   }
   //Animation
   getAnimation() {
-    return this.#animation;
+    return this.animation;
   }
 
   getSprite() {
-    return this.#sprite;
+    return this.sprite;
   }
 
   //this function needs to be overridden to implement the subclass gameobject behaviour.
@@ -66,15 +66,15 @@ class GameObject {
   //render some boundaries
   debug() {
     push();
-    translate(this.#posX,this.#posY);
+    translate(this.posX,this.posY);
     rectMode(CENTER);
     noFill();
     stroke(0,1,1,1);
-    if(this.#sprite) {
-      rect(0,0,this.#sprite.getScreenWidth(),this.#sprite.getScreenHeight());
+    if(this.sprite) {
+      rect(0,0,this.sprite.getScreenWidth(),this.sprite.getScreenHeight());
     }
-    else if(this.#animation) {
-      rect(0,0,this.#animation.getScreenWidth(),this.#animation.getScreenHeight());
+    else if(this.animation) {
+      rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
     }
     pop();
   }

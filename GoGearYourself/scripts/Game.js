@@ -2,7 +2,7 @@ class Game extends GameState {
 
   //MainMenu Class to provide first interaction with the game and basic information.
   //Used to start and end the game.
-  #gearImage;
+  gearImage;
 
   constructor() {
     super("Game");
@@ -19,7 +19,7 @@ class Game extends GameState {
   //setup the scene.
   start() {
     //TODO:
-    let gear = new GameObject(new Sprite(this.#gearImage));
+    let gear = new GameObject(new Sprite(this.gearImage));
     this.spawn(gear);
   }
   //Main logic of this gamestate.
@@ -36,7 +36,7 @@ class Game extends GameState {
   //TODO
   async loadAssets(cb) {
     let finished = false;
-    this.#gearImage = await loadImage('assets/img/gameobjects/gear.png');
+    this.gearImage = await loadImage('assets/img/gameobjects/gear.png');
     cb();
   }
 
