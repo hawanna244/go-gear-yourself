@@ -18,19 +18,17 @@ void setup() {
   Tools.log("Debugging is enabled.");
 
   // put setup code here
-  //fullScreen(); //prevent scrollbars
-  //size(320,240);
-  fullScreen();
+  fullScreen(0); 
+  Tools.log("Viewport: Width:"+width+" Height:"+height);
   colorMode(HSB,360,1,1,1); //color setup
   noSmooth();
-
+  
   //Build loading GameState to show.
   //Manual State handling outside of update/draw to show something before other assets are loaded.
   Tools.log("Loading resources...");
 
   //loading global assets now.
   loadAssets();
-  //gameStates.loading.end();
 
   //Build other GameStates
   Tools.log("Building GameStates...");
@@ -50,7 +48,7 @@ void draw() {
   // put drawing code here
 
   //wipe screen
-  background(0,0,1,1);
+  background(frameCount%360,1,1,1);
   //handle gamestates
   for(int i = 0; i < gameStates.size(); i++){
     if(gameStates.get(i).active()) {
@@ -105,6 +103,6 @@ void debugInfo() {
     }
   }
   text("FPS: "+frameRate,0,60);
-  popMatrix();
   popStyle();
+  popMatrix();
 }

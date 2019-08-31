@@ -67,6 +67,7 @@ class GameObject {
   //render some boundaries
   void debug() {
     pushMatrix();
+    pushStyle();
     translate(this.posX,this.posY);
     rectMode(CENTER);
     noFill();
@@ -77,6 +78,7 @@ class GameObject {
     else if(this.animation != null) {
       rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
     }
+    popStyle();
     popMatrix();
   }
 }

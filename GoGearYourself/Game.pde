@@ -46,8 +46,6 @@ class Game extends GameState {
 
   //override
   void onKeyPressed(int kc) {
-    //start the game if key pressed
-    this.moveToState("Game");
 
   }
 }

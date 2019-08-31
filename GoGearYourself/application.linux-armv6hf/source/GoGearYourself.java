@@ -34,19 +34,17 @@ public void setup() {
   Tools.log("Debugging is enabled.");
 
   // put setup code here
-  // //prevent scrollbars
-  //size(320,240);
-  fullScreen();
+   
+  Tools.log("Viewport: Width:"+width+" Height:"+height);
   colorMode(HSB,360,1,1,1); //color setup
   
-
+  
   //Build loading GameState to show.
   //Manual State handling outside of update/draw to show something before other assets are loaded.
   Tools.log("Loading resources...");
 
   //loading global assets now.
   loadAssets();
-  //gameStates.loading.end();
 
   //Build other GameStates
   Tools.log("Building GameStates...");
@@ -66,7 +64,7 @@ public void draw() {
   // put drawing code here
 
   //wipe screen
-  background(0,0,1,1);
+  background(frameCount%360,1,1,1);
   //handle gamestates
   for(int i = 0; i < gameStates.size(); i++){
     if(gameStates.get(i).active()) {
@@ -121,8 +119,8 @@ public void debugInfo() {
     }
   }
   text("FPS: "+frameRate,0,60);
-  popMatrix();
   popStyle();
+  popMatrix();
 }
 class Animation {
   
@@ -206,8 +204,6 @@ class Game extends GameState {
 
   //override
   public void onKeyPressed(int kc) {
-    //start the game if key pressed
-    this.moveToState("Game");
 
   }
 }
@@ -280,6 +276,7 @@ class GameObject {
   //render some boundaries
   public void debug() {
     pushMatrix();
+    pushStyle();
     translate(this.posX,this.posY);
     rectMode(CENTER);
     noFill();
@@ -290,6 +287,7 @@ class GameObject {
     else if(this.animation != null) {
       rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
     }
+    popStyle();
     popMatrix();
   }
 }
@@ -568,7 +566,7 @@ public static class Tools {
     return found;
   }
 }
-  public void settings() {  fullScreen();  noSmooth(); }
+  public void settings() {  fullScreen(0);  noSmooth(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "GoGearYourself" };
     if (passedArgs != null) {
