@@ -85,7 +85,7 @@ public class GameState extends PApplet implements  IState{
   public boolean isActive() {
     return this.active;
   }
-  //Just show aloading screen image
+  //Just show a loading screen image
   public void displayLoadingState() {
     pushMatrix();
       background(0,0,0,1);
