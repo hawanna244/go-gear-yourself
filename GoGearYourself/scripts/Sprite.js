@@ -1,8 +1,6 @@
 class Sprite {
 
   //The Sprite class holds an Image and provides some useful image manipulation functions.
-  img = {};
-
   constructor(img) {
     this.img = img;
   }

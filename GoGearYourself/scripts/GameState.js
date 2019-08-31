@@ -3,12 +3,11 @@ class GameState {
   //Abstract class to represent a game state with required functions to fit into the state mechanic.
   //Compare this to a scene in a play. GameObjects should be handled in a subclass of this.
 
-  active = false; //should this state be handled?
-  gameObjects = []; //all gameObjects within this state. Have to be registered.
-  loadingWallpaper = {};
-
   constructor(title) { //build a gamestate
     this.title = title;
+    this.active = false; //should this state be handled?
+    this.gameObjects = []; //all gameObjects within this state. Have to be registered.
+    this.loadingWallpaper = {};
   }
 
   //Initialize this state. Always call init() to set this state active.

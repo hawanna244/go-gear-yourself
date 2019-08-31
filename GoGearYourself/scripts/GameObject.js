@@ -2,12 +2,6 @@ class GameObject {
 
   //Subclasses of GameObject define the logic that is required to interact with other GameObjects.
   //This abstract class handles some events and required fields like coordinates and animations/sprites.
-  posX = 0;
-  posY = 0;
-  oldPosX = 0;
-  oldPosY = 0;
-  sprite = {};
-  animation = {};
 
   //assets have to be preloaded before construction
   constructor(sprite,animation = null) {
@@ -15,6 +9,12 @@ class GameObject {
     this.animation = animation;
     this.posX = width/2;
     this.posY = height/2;
+    this.posX = 0;
+    this.posY = 0;
+    this.oldPosX = 0;
+    this.oldPosY = 0;
+    this.sprite = {};
+    this.animation = {};
   }
 
   //update this gameobject

@@ -2,11 +2,12 @@ class Game extends GameState {
 
   //MainMenu Class to provide first interaction with the game and basic information.
   //Used to start and end the game.
-  gearImage;
+
 
   constructor() {
     super("Game");
     Tools.log("Created Game!",this);
+    this.gearImage = {};
   }
 
   beforeInit() {
