@@ -23,6 +23,7 @@ var Tools = { //Some global tools.
   },
   log:function(msg,caller) {
     if(debug) {
+      let name = "";
       if(!caller) {
         name = "System";
       }
@@ -111,6 +112,7 @@ function loadAssets() {
 //inform all gamestates about the pressed key
 function keyPressed() {
   for(var gs in gameStates){
+    console.log(gameState[gs]);
     if(gameStates[gs].active()) {
       gameStates[gs].onKeyPressed(keyCode);
     }
