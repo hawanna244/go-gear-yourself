@@ -566,9 +566,9 @@ public static class Tools {
     return found;
   }
 }
-  public void settings() {  fullScreen(0);  noSmooth(); }
+  public void settings() {  fullScreen();  noSmooth(); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "GoGearYourself" };
+    String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "GoGearYourself" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
