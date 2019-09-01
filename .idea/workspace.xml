@@ -7,13 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce1cf862-9d4b-4487-a27a-1dcb42736601" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/de/xdstudios/GearBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GoGearYourself/de/xdstudios/GameState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/xdstudios/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/xdstudios/GameState.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,11 +36,15 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/core.jar!/" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/img/gameobjects" />
+      <recent name="$PROJECT_DIR$/src/assets/img" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/de/xdstudios" />
     </key>
