@@ -18,7 +18,8 @@ void setup() {
   Tools.log("Debugging is enabled.");
 
   // put setup code here
-  fullScreen(); 
+  //fullScreen(); 
+  size(320,240);
   Tools.log("Viewport: Width:"+width+" Height:"+height);
   colorMode(HSB,360,1,1,1); //color setup
   noSmooth();

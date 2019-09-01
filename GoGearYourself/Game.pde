@@ -3,8 +3,8 @@ class Game extends GameState {
   //MainMenu Class to provide first interaction with the game and basic information.
   //Used to start and end the game.
 
-  private PImage gearImage;
-
+  private GameObject gameWallpaper;
+  
   public Game() {
     super("Game");
     Tools.log("Created Game!",this);
@@ -19,11 +19,9 @@ class Game extends GameState {
   }
   //setup the scene.
   void start() {
-    GameObject gear = new GameObject(new Sprite(gearImage));
-    this.spawn(gear);
     //TODO:
     //create GameObject for Menu Background
-
+    spawn(gameWallpaper);
     //Create GameObject for Logo
 
     //create GameObject for Interaction Hint string
@@ -41,7 +39,7 @@ class Game extends GameState {
   //function to fill a member of this class with all required ressources for the application.
   //TODO
   void loadAssets() {
-    gearImage = loadImage("assets/img/gameobjects/gear.png");
+    gameWallpaper = new GameObject(new Sprite(loadImage("assets/img/static/gameWallpaper.png")));
   }
 
   //override
