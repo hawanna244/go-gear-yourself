@@ -21,6 +21,7 @@ class GameObject {
   }
   public GameObject(Animation animation) { //For Animation
     this.animation = animation;
+    this.animation.start();
     this.globalAfterConstruct();
   }
 
@@ -70,10 +71,14 @@ class GameObject {
     if(this.sprite != null) {
       return this.sprite;
     }
+    else if(this.animation != null) {
+      return this.animation.getCurrentSprite();
+    }
     else {
        throw new UnsupportedOperationException("No Sprite found on GameObject!"); 
     }
   }
+  
   //set hard to position
   public void setPosition(float x, float y) {
       this.posX = x;

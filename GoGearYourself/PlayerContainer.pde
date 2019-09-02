@@ -8,10 +8,7 @@ abstract class PlayerContainer extends GameObject {
  
   private float maxGasAmount = 100, 
                 currentGasAmount = 100;
-  
-  public PlayerContainer() {
-    super(); 
-  }
+
   //get remaining gas of the current player
   public float getGasRemaining() {
     return currentGasAmount;
