@@ -22,8 +22,6 @@ class GameState {
     this.loadAssets();
     this.mayActivate();
     this.start();
-    //TODO: Prevent setting active bevore all assets are done?
-    //Handle this via loading screen is quite okay I guess.
   }
 
   //This function is required to be overridden by the subclass to initialize the current scene.

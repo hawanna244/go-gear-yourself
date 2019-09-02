@@ -8,19 +8,26 @@ class GameObject {
   private ArrayList<GameObject> overlaps;
   private String tag = "undefined";
   private GameState gameState;
-  float posX, posY, oldPosX, oldPosY;
+  float posX, posY, oldPosX, oldPosY, rotation = 0;
   
   //assets have to be preloaded before construction
-  public GameObject(Sprite sprite) {
+  public GameObject() { //for empty GameObjects or GameObject Group Parents
+    this.globalAfterConstruct();
+  }
+  
+  public GameObject(Sprite sprite) { //For Sprites
     this.sprite = sprite;
+    this.globalAfterConstruct();
+  }
+  public GameObject(Animation animation) { //For Animation
+    this.animation = animation;
+    this.globalAfterConstruct();
+  }
+
+  protected void globalAfterConstruct() {
     this.posX = width/2;
     this.posY = height/2;
     this.overlaps = new ArrayList<GameObject>();
-  }
-  public GameObject(Animation animation) {
-    this.animation = animation;
-    this.posX = width/2;
-    this.posY = height/2;
   }
 
   //update this gameobject
