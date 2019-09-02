@@ -57,11 +57,12 @@ class GameState {
   //Spawn a game object and register it in this state after creation.
   //The gameObject needs to be added to the state and can be prepared before to ensure correct behaviour.
   void spawn(GameObject go) {
+    go.setGameState(this);
     this.gameObjects.add(go);
   }
   //destroy a game object.
   void destroy(GameObject go) {
-    throw new UnsupportedOperationException("Not implemented!");
+    this.gameObjects.remove(go);
   }
   void gameObjectUpdate() {
     //check collisions

@@ -7,6 +7,7 @@ class GameObject {
   
   private ArrayList<GameObject> overlaps;
   private String tag = "undefined";
+  private GameState gameState;
   float posX, posY, oldPosX, oldPosY;
   
   //assets have to be preloaded before construction
@@ -174,5 +175,26 @@ class GameObject {
   //receive current tag
   public String getTag() {
      return this.tag; 
+  }
+  //let state register itself
+  public void setGameState(GameState state) {
+     this.gameState = state; 
+  }
+  //every go may register children on gamestate
+  protected void spawn(GameObject go) {
+     if(this.gameState != null) {
+        this.gameState.spawn(go); 
+     }
+     else {
+       throw new UnsupportedOperationException("No Gamestate found on GameObject!"); 
+     }
+  }
+  protected void destroy(GameObject go) {
+     if(this.gameState != null) {
+        this.gameState.destroy(go); 
+     }
+     else {
+       throw new UnsupportedOperationException("No Gamestate found on GameObject!"); 
+     }
   }
 }
