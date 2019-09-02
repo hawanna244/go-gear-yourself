@@ -8,7 +8,7 @@ class GameObject {
   private ArrayList<GameObject> overlaps;
   private String tag = "undefined";
   private GameState gameState;
-  float posX, posY, oldPosX, oldPosY, rotation = 0;
+  private float posX, posY, oldPosX, oldPosY, rotation = 0;
   
   //assets have to be preloaded before construction
   public GameObject() { //for empty GameObjects or GameObject Group Parents
@@ -46,6 +46,7 @@ class GameObject {
   public void render() {
     pushMatrix();
     translate(this.posX,this.posY);
+    rotate(radians(rotation));
     if(this.sprite != null) { //if sprite is present
       this.sprite.render();
     }
@@ -77,6 +78,10 @@ class GameObject {
     else {
        throw new UnsupportedOperationException("No Sprite found on GameObject!"); 
     }
+  }
+  //rotate via given amount
+  public void setRotation(float rot) {
+    this.rotation = rot;
   }
   
   //set hard to position

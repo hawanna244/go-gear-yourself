@@ -5,7 +5,7 @@ class Game extends GameState {
   
   //GameObjects may be generated in loadAssets if the resources is not required anywhere else
   private GameObject gameWallpaper;
-  private GameObject fanBelt;
+  private GameObject fanBeltLeft, fanBeltRight;
   private ArrayList<Sprite> fanBeltImgs;
   //resources
   
@@ -26,7 +26,17 @@ class Game extends GameState {
     //TODO:
     //create GameObject for game background
     spawn(gameWallpaper);
-    spawn(fanBelt);
+    
+    fanBeltLeft = new GameObject(new Animation(fanBeltImgs,100));
+    fanBeltRight = new GameObject(new Animation(fanBeltImgs,100));
+    
+    fanBeltLeft.setPosition(48,64);
+    fanBeltLeft.setRotation(90);
+    spawn(fanBeltLeft);
+
+    fanBeltRight.setPosition(width-48,height-64);
+    fanBeltRight.setRotation(-90);
+    spawn(fanBeltRight);
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
@@ -48,6 +58,6 @@ class Game extends GameState {
       fanBeltImgs.add(new Sprite(loadImage("assets/img/gameobjects/fanBelt"+i+".png")));
     } 
     
-    fanBelt = new GameObject(new Animation(fanBeltImgs,1000));
+    
   }
 }
