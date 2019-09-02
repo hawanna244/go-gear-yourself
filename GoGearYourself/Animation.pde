@@ -59,6 +59,10 @@ class Animation {
       }
   }
   
+  public void setDelay(float newDelay) {
+    this.delay = newDelay;
+  }
+  
   public float getWidth() {
     return this.getCurrentSprite().getWidth();
   }

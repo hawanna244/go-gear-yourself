@@ -20,6 +20,7 @@ void setup() {
   // put setup code here
   //fullScreen(); 
   size(320,240);
+  frameRate(30);
   Tools.log("Viewport: Width:"+width+" Height:"+height);
   colorMode(HSB,360,1,1,1); //color setup
   noSmooth();

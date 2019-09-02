@@ -53,10 +53,10 @@ class GameObject {
     else if(this.animation != null) { //if animation is present
       this.animation.render();
     }
-    popMatrix();
     if(GoGearYourself.debug) {
       this.debug();
     }
+    popMatrix();
   }
   //Animation
   public Animation getAnimation() {
@@ -146,9 +146,6 @@ class GameObject {
 
   //render some boundaries
   void debug() {
-    pushMatrix();
-    pushStyle();
-    translate(this.posX,this.posY);
     rectMode(CENTER);
     noFill();
     stroke(100,1,1,1);
@@ -158,8 +155,6 @@ class GameObject {
     else if(this.animation != null) {
       rect(0,0,this.animation.getScreenWidth(),this.animation.getScreenHeight());
     }
-    popStyle();
-    popMatrix();
   }
   
   //check for rectangular overlapping gameobjects
