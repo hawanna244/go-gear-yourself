@@ -3,18 +3,18 @@ class Animation {
   //Animations are similiar to sprite classes but extend them to hold an array of images and handling animation relevant logic in addition to basic image manipulation.
   ArrayList<Sprite> images;
   private boolean run = false;
+  private float delay = 100, lastTimeRender;
+  
   int imgIterator = 0;
   
-  public Animation(ArrayList<Sprite> imgs) {
+  public Animation(ArrayList<Sprite> imgs, int delay) {
     this.images = imgs;
+    this.delay = delay;
   }
   
   public void update() {
     if(run) {
-      imgIterator++;
-      if(imgIterator >= images.size()) {
-        imgIterator = 0;
-      }
+      checkForUpdate();
       images.get(imgIterator).update(); //update single sprite (current)
     }
   }
@@ -25,6 +25,7 @@ class Animation {
   
   public void start() {
     imgIterator = 0;
+    lastTimeRender = millis();
     run = true;
   }
   
@@ -43,6 +44,19 @@ class Animation {
   
   public boolean isRunning() {
     return run;
+  }
+  
+  //may th eimage changed based on speed?
+  private void checkForUpdate() {
+      
+      if(millis() >= lastTimeRender + delay) {
+        lastTimeRender = millis();
+        imgIterator++;
+      }
+    
+      if(imgIterator >= images.size()) {
+        imgIterator = 0;
+      }
   }
   
   public float getWidth() {

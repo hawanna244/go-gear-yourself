@@ -48,6 +48,6 @@ class Game extends GameState {
       fanBeltImgs.add(new Sprite(loadImage("assets/img/gameobjects/fanBelt"+i+".png")));
     } 
     
-    fanBelt = new GameObject(new Animation(fanBeltImgs));
+    fanBelt = new GameObject(new Animation(fanBeltImgs,1000));
   }
 }
