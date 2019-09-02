@@ -7,7 +7,8 @@ class PlayerContainer extends GameObject {
   //Should they be placed in the Engine eg. in GameState or GameObject?
  
   private float maxGasAmount = 100, 
-                currentGasAmount = 100;
+                currentGasAmount = 100,
+                score = 0.5;
   private int minGear = 1, maxGear = 6, currentGear = 1, playerPosition = 1;
 
   private GameObject piston;
@@ -20,7 +21,13 @@ class PlayerContainer extends GameObject {
   }
   
   public void render() {
-  
+    //rendering is position dependend
+    switch(playerPosition) {
+       case 1:
+       break;
+       case 2:
+       break;
+    }  
   }
   
   public void behaviour() {
@@ -57,11 +64,11 @@ class PlayerContainer extends GameObject {
   }
   
   public void shift() {
-      
+      shifting = true;
   }
   
   public void unshift() {
-      
+      shifting = false;
   }
   
   public boolean isShifting() {
@@ -76,5 +83,15 @@ class PlayerContainer extends GameObject {
   //the player did a wrong input and loses some stuff / screenshake / release particles
   public void punish() {
     
+  }
+  //sets the current score and furthermore the piston position
+  //calculated in gameState
+  public void setScore(float s) {
+    this.score = s;
+  }
+  
+  //return calculated player force / potency
+  public float getTorque() {
+      return 1;
   }
 }
