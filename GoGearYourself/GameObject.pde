@@ -143,6 +143,7 @@ class GameObject {
     popStyle();
     popMatrix();
   }
+  
   //check for rectangular overlapping gameobjects
   public boolean gameObjectRectIntersection(GameObject other) {
     //compare both sprites and position to call events:
@@ -164,14 +165,13 @@ class GameObject {
       overlap = false;
     }
     
-    Tools.log(left+" "+right+" "+top+"  "+bottom+" < and > "+otherLeft+" "+otherRight+" "+otherTop+" "+otherBottom+" Intersection:"+overlap);
     return overlap;
   }
-  
+  //tag for logic
   public void setTag(String s) {
      this.tag = s; 
   }
-  
+  //receive current tag
   public String getTag() {
      return this.tag; 
   }

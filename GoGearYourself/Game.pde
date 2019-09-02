@@ -5,10 +5,8 @@ class Game extends GameState {
   
   //GameObjects may be generated in loadAssets if the resources is not required anywhere else
   private GameObject gameWallpaper;
-  private GameObject debugGear;
   
   //resources
-  private PImage gearImage;
   
   public Game() {
     super("Game");
@@ -27,16 +25,11 @@ class Game extends GameState {
     //TODO:
     //create GameObject for game background
     spawn(gameWallpaper);
-    
-    debugGear = new GameObject(new Sprite(gearImage));
-    debugGear.setTag("debugGear");
-    spawn(debugGear);
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
   void logic() {
-   debugGear.setPosition(mouseX,mouseY);
-   gameWallpaper.setPosition(0,0);
+    
   }
   //Main render function of this gamestate.
   //Gets called within draw cycle.
@@ -47,11 +40,5 @@ class Game extends GameState {
   //TODO
   void loadAssets() {
     gameWallpaper = new GameObject(new Sprite(loadImage("assets/img/static/gameWallpaper.png")));
-    gearImage = loadImage("assets/img/gameobjects/gear.png");
-  }
-
-  //override
-  void onKeyPressed(int kc) {
-
   }
 }

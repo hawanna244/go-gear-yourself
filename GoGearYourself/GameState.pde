@@ -127,12 +127,16 @@ class GameState {
     Tools.stateTransit(this,to);
   }
   //gets called from engine if key was pressed.
+  void handleKeyEvent(int kc) {
+    this.onKeyPressed(kc);
+    for(int i = 0; i < this.gameObjects.size(); i++) {
+      this.gameObjects.get(i).onKeyPressed(kc);
+    }
+  }
+  
   void onKeyPressed(int kc) {
     if(debug) {
       Tools.log("Key pressed in GameState "+this.getClass().getName()+".⚠️ This GameState doesn`t handle this event! KeyCode: "+kc);
-    }
-    for(int i = 0; i < this.gameObjects.size(); i++) {
-      this.gameObjects.get(i).onKeyPressed(kc);
     }
   }
   //Prepare state to sleep before the application stops using it.
