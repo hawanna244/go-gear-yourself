@@ -64,10 +64,21 @@ class GameState {
     throw new UnsupportedOperationException("Not implemented!");
   }
   void gameObjectUpdate() {
+    //check collisions
     for(int i = 0; i < this.gameObjects.size(); i++) {
+      this.checkGameObjectEvents(this.gameObjects.get(i));
       this.gameObjects.get(i).update();
     }
   }
+  //let objects check egainst each other
+  void checkGameObjectEvents(GameObject go) {
+    for(int i = 0; i < this.gameObjects.size(); i++) {
+      if(!this.gameObjects.get(i).equals(go)) {//dont compare to self
+        go.checkEventsOn(this.gameObjects.get(i));
+      }
+    }
+  }
+  
   void gameObjectRender() {
     for(int i = 0; i < this.gameObjects.size(); i++) {
       this.gameObjects.get(i).render();

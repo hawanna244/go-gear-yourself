@@ -5,7 +5,7 @@ Created for ClockworkPi GameJam 2019 Q3
 */
 
 //Global settings
-boolean debug = true;
+static boolean debug = true;
 String version = "1.0.0";
 
 //Global objects

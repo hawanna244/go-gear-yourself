@@ -4,6 +4,9 @@ class GameObject {
   //This abstract class handles some events and required fields like coordinates and animations/sprites.
   Sprite sprite;
   Animation animation;
+  
+  private ArrayList<GameObject> overlaps;
+  private String tag = "undefined";
   float posX, posY, oldPosX, oldPosY;
   
   //assets have to be preloaded before construction
@@ -11,6 +14,7 @@ class GameObject {
     this.sprite = sprite;
     this.posX = width/2;
     this.posY = height/2;
+    this.overlaps = new ArrayList<GameObject>();
   }
   public GameObject(Animation animation) {
     this.animation = animation;
@@ -40,28 +44,86 @@ class GameObject {
       this.animation.render();
     }
     popMatrix();
-    if(debug) {
+    if(GoGearYourself.debug) {
       this.debug();
     }
   }
   //Animation
   public Animation getAnimation() {
-    return this.animation;
+    if(this.animation != null) {
+      return this.animation;
+    }
+    else {
+       throw new UnsupportedOperationException("No Animation found on GameObject!"); 
+    }
   }
 
   public Sprite getSprite() {
-    return this.sprite;
+    if(this.sprite != null) {
+      return this.sprite;
+    }
+    else {
+       throw new UnsupportedOperationException("No Sprite found on GameObject!"); 
+    }
   }
-
+  //set hard to position
+  public void setPosition(float x, float y) {
+      this.posX = x;
+      this.posY = y;
+  }
+  public PVector getPosition() {
+     return new PVector(this.posX,this.posY);
+  }
+  //compare yourself to this object and cause events
+  public void checkEventsOn(GameObject go) {
+    //rect intersection of combined dimensions of sprites calculated width/height and gameobjects position:
+    if(this.gameObjectRectIntersection(go)){
+      this.onOverlap(go);
+    }
+    else {
+      this.onNotOverlap(go);
+    }
+    //check other events
+  }
+  //check for each still overlapping gameobjects if its new
+  //call on collision enter if not known.
+  public void onOverlap(GameObject go) { //DO NOT OVERRIDE
+    if(this.overlaps.contains(go)) {
+       this.onCollisionStay(go); 
+    }
+    else {
+        this.overlaps.add(go);
+        this.onCollisionEnter(go);
+    }
+  }
+  //check for each still overlapping gameobjects if its new
+  //call on collision exit if not known.
+  public void onNotOverlap(GameObject go) { //DO NOT OVERRIDE
+    if(this.overlaps.contains(go)) {
+       this.overlaps.remove(go);
+       this.onCollisionExit(go); 
+    }
+  }
+  //event handler to be overridden
+  public void onCollisionStay(GameObject go) {
+     Tools.log("⚠Collision stays in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
+  }
+  //event handler to be overridden
+  public void onCollisionEnter(GameObject go) {
+      Tools.log("⚠Collision enter in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
+  }
+  //event handler to be overridden
+  public void onCollisionExit(GameObject go) {
+      Tools.log("⚠Collision exit in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
+  }
   //this function needs to be overridden to implement the subclass gameobject behaviour.
   void behaviour() {
-    Tools.log("⚠️ You should implement the method behaviour in "+this.getClass().getName()+" before using GameObjects. GameObjects need the behaviour function to implement their logic.");
+    //Log is not helpful
+    //Tools.log("⚠️ You should implement the method behaviour in "+this.getClass().getName()+" before using GameObjects. GameObjects need the behaviour function to implement their logic.");
   }
   //gets called from engine if key was pressed.
   public void onKeyPressed(int kc) {
-    if(debug) {
       Tools.log("Key pressed in GameObject "+this.getClass().getName()+".⚠️ This GameObject doesn`t handle this event! KeyCode: "+kc);
-    }
   }
 
   //render some boundaries
@@ -71,7 +133,7 @@ class GameObject {
     translate(this.posX,this.posY);
     rectMode(CENTER);
     noFill();
-    stroke(0,1,1,1);
+    stroke(100,1,1,1);
     if(this.sprite != null) {
       rect(0,0,this.sprite.getScreenWidth(),this.sprite.getScreenHeight());
     }
@@ -80,5 +142,37 @@ class GameObject {
     }
     popStyle();
     popMatrix();
+  }
+  //check for rectangular overlapping gameobjects
+  public boolean gameObjectRectIntersection(GameObject other) {
+    //compare both sprites and position to call events:
+    boolean overlap = true;
+    Sprite mySprite = this.getSprite();
+    Sprite otherSprite = other.getSprite();
+    
+    //Vars for better readability
+    float left = this.posX - mySprite.getScreenWidth()/2; //divide by 2 because x marks the center
+    float right = this.posX + mySprite.getScreenWidth()/2;
+    float top = this.posY - mySprite.getScreenHeight()/2;
+    float bottom = this.posY + mySprite.getScreenHeight()/2;
+    float otherLeft = other.posX - otherSprite.getScreenWidth()/2; 
+    float otherRight = other.posX + otherSprite.getScreenWidth()/2;
+    float otherTop = other.posY - otherSprite.getScreenHeight()/2;
+    float otherBottom = other.posY + otherSprite.getScreenHeight()/2;
+    
+    if(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop) {
+      overlap = false;
+    }
+    
+    Tools.log(left+" "+right+" "+top+"  "+bottom+" < and > "+otherLeft+" "+otherRight+" "+otherTop+" "+otherBottom+" Intersection:"+overlap);
+    return overlap;
+  }
+  
+  public void setTag(String s) {
+     this.tag = s; 
+  }
+  
+  public String getTag() {
+     return this.tag; 
   }
 }

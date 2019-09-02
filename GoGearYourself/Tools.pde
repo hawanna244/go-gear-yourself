@@ -16,7 +16,9 @@ public static class Tools {
   
   //Logging
   public static void log(String msg, Object caller) {
-    println(caller.getClass().getName()+": "+msg);
+    if(GoGearYourself.debug) {
+      println(caller.getClass().getName()+": "+msg);
+    }
   }
   public static void log(String msg) {
     println("System: "+msg);
