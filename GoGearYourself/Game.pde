@@ -107,7 +107,30 @@ class Game extends GameState {
   void afterDraw() {
     if(!gameStarted) {
       //render countdown
-      pushStyle();
+      renderCountdown();
+    }
+  }
+  
+  //function to fill a member of this class with all required ressources for the application.
+  //TODO
+  void loadAssets() {
+    gameWallpaper = new GameObject(new Sprite(loadImage("assets/img/static/gameWallpaper.png")));
+    
+    fanBeltImgs = new ArrayList<Sprite>();
+    for(int i = 1; i <= 5; i++) {
+      fanBeltImgs.add(new Sprite(loadImage("assets/img/gameobjects/fanBelt"+i+".png")));
+    }
+    driveImgs = new ArrayList<Sprite>();
+    for(int i = 1; i <= 12; i++) {
+      driveImgs.add(new Sprite(loadImage("assets/img/gameobjects/drive"+i+".png")));
+    } 
+    pistonLeftImg = new Sprite(loadImage("assets/img/gameobjects/pistonLeft.png"));
+    pistonRightImg = new Sprite(loadImage("assets/img/gameobjects/pistonRight.png"));
+    
+  }
+  
+  private void renderCountdown() {
+        pushStyle();
       //blackBars
       fill(0,0,0,0.5);
       noStroke();
@@ -131,24 +154,5 @@ class Game extends GameState {
           popStyle();
         }
       popMatrix();
-    }
-  }
-  
-  //function to fill a member of this class with all required ressources for the application.
-  //TODO
-  void loadAssets() {
-    gameWallpaper = new GameObject(new Sprite(loadImage("assets/img/static/gameWallpaper.png")));
-    
-    fanBeltImgs = new ArrayList<Sprite>();
-    for(int i = 1; i <= 5; i++) {
-      fanBeltImgs.add(new Sprite(loadImage("assets/img/gameobjects/fanBelt"+i+".png")));
-    }
-    driveImgs = new ArrayList<Sprite>();
-    for(int i = 1; i <= 12; i++) {
-      driveImgs.add(new Sprite(loadImage("assets/img/gameobjects/drive"+i+".png")));
-    } 
-    pistonLeftImg = new Sprite(loadImage("assets/img/gameobjects/pistonLeft.png"));
-    pistonRightImg = new Sprite(loadImage("assets/img/gameobjects/pistonRight.png"));
-    
   }
 }
