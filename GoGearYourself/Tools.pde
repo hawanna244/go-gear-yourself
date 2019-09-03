@@ -21,7 +21,9 @@ public static class Tools {
     }
   }
   public static void log(String msg) {
-    println("System: "+msg);
+    if(GoGearYourself.debug) {
+      println("System: "+msg);
+    }
   }
   
   //global image scaling

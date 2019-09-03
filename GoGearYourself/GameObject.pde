@@ -124,7 +124,7 @@ class GameObject {
   }
   //event handler to be overridden
   public void onCollisionStay(GameObject go) {
-     Tools.log("⚠Collision stays in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
+      Tools.log("⚠Collision stays in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
   }
   //event handler to be overridden
   public void onCollisionEnter(GameObject go) {
