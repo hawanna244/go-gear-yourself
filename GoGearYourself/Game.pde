@@ -52,15 +52,17 @@ class Game extends GameState {
     fanBeltRight.setRotation(-90);
     spawn(fanBeltRight);
     
-    pistonLeft.setPosition(80,height/2);
+    pistonLeft.setPosition(16,height/2+24);
     spawn(pistonLeft);
-    pistonRight.setPosition(width-80,height/2);
+    pistonRight.setPosition(width-16,height/2-24);
     spawn(pistonRight);
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
   void logic() {
-    
+    //jitter piston
+    pistonLeft.setPosition(pistonLeft.getPosition().x,pistonLeft.getPosition().y+cos(frameCount));
+    pistonRight.setPosition(pistonRight.getPosition().x,pistonRight.getPosition().y+sin(frameCount));
   }
   //Main render function of this gamestate.
   //Gets called within draw cycle.
