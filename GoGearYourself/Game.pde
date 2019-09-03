@@ -5,8 +5,9 @@ class Game extends GameState {
   
   //GameObjects may be generated in loadAssets if the resources is not required anywhere else
   private GameObject gameWallpaper;
-  private GameObject fanBeltLeft, fanBeltRight, driveLeft, driveRight;
+  private GameObject fanBeltLeft, fanBeltRight, driveLeft, driveRight, pistonLeft, pistonRight;
   private ArrayList<Sprite> fanBeltImgs, driveImgs;
+  private Sprite pistonLeftImg, pistonRightImg;
   //resources
   
   public Game() {
@@ -32,6 +33,8 @@ class Game extends GameState {
     driveLeft = new GameObject(new Animation(driveImgs,100));
     driveRight = new GameObject(new Animation(driveImgs,100));
     driveRight.getAnimation().setFrame(6);
+    pistonLeft = new GameObject(pistonLeftImg);
+    pistonRight = new GameObject(pistonRightImg);
     
     driveLeft.setPosition(54,height/2);
     driveLeft.setRotation(90);
@@ -49,7 +52,10 @@ class Game extends GameState {
     fanBeltRight.setRotation(-90);
     spawn(fanBeltRight);
     
-
+    pistonLeft.setPosition(80,height/2);
+    spawn(pistonLeft);
+    pistonRight.setPosition(width-80,height/2);
+    spawn(pistonRight);
   }
   //Main logic of this gamestate.
   //Gets called within update cycle.
@@ -74,7 +80,8 @@ class Game extends GameState {
     for(int i = 1; i <= 12; i++) {
       driveImgs.add(new Sprite(loadImage("assets/img/gameobjects/drive"+i+".png")));
     } 
-    
+    pistonLeftImg = new Sprite(loadImage("assets/img/gameobjects/pistonLeft.png"));
+    pistonRightImg = new Sprite(loadImage("assets/img/gameobjects/pistonRight.png"));
     
   }
 }
