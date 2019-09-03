@@ -59,6 +59,10 @@ class Animation {
       }
   }
   
+  public void setFrame(int f) {
+    imgIterator = f%images.size();
+  }
+  
   public void setDelay(float newDelay) {
     this.delay = newDelay;
   }

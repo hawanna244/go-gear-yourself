@@ -92,6 +92,6 @@ class PlayerContainer extends GameObject {
   
   //return calculated player force / potency
   public float getTorque() {
-      return 1;
+      return 1.0;
   }
 }
