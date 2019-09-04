@@ -8,10 +8,11 @@ class GameObject {
   private ArrayList<GameObject> overlaps;
   private String tag = "undefined";
   private GameState gameState;
-  private float posX, posY, oldPosX, oldPosY, rotation = 0;
+  protected float posX, posY, oldPosX, oldPosY, rotation = 0;
   
   //assets have to be preloaded before construction
   public GameObject() { //for empty GameObjects or GameObject Group Parents
+    this.sprite = new Sprite();
     this.globalAfterConstruct();
   }
   
@@ -57,7 +58,9 @@ class GameObject {
       this.debug();
     }
     popMatrix();
+    this.display();
   }
+  
   //Animation
   public Animation getAnimation() {
     if(this.animation != null) {
@@ -76,7 +79,7 @@ class GameObject {
       return this.animation.getCurrentSprite();
     }
     else {
-       throw new UnsupportedOperationException("No Sprite found on GameObject!"); 
+      return null; 
     }
   }
   //rotate via given amount
@@ -122,6 +125,7 @@ class GameObject {
        this.onCollisionExit(go); 
     }
   }
+
   //event handler to be overridden
   public void onCollisionStay(GameObject go) {
       Tools.log("⚠Collision stays in "+this.getClass().getName()+" with "+go.getClass().getName()+"! This event is unhandled!");
@@ -139,6 +143,11 @@ class GameObject {
     //Log is not helpful
     //Tools.log("⚠️ You should implement the method behaviour in "+this.getClass().getName()+" before using GameObjects. GameObjects need the behaviour function to implement their logic.");
   }
+  //override this for custom graphics rendered after base GameObject content
+  public void display() {
+     //nothing to do here
+  }
+  
   //gets called from engine if key was pressed.
   public void onKeyPressed(int kc) {
       Tools.log("Key pressed in GameObject "+this.getClass().getName()+".⚠️ This GameObject doesn`t handle this event! KeyCode: "+kc);

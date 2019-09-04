@@ -5,7 +5,7 @@ class Game extends GameState {
   
   //GameObjects may be generated in loadAssets if the resources is not required anywhere else
   private GameObject gameWallpaper;
-  private GameObject fanBeltLeft, fanBeltRight, driveLeft, driveRight, pistonLeft, pistonRight;
+  private GameObject fanBeltLeft, fanBeltRight, driveLeft, driveRight, pistonLeft, pistonRight, gasBarLeft, gasBarRight;
   private ArrayList<Sprite> fanBeltImgs, driveImgs;
   private Sprite pistonLeftImg, pistonRightImg;
   private boolean gameStarted = false;
@@ -63,10 +63,18 @@ class Game extends GameState {
     fanBeltRight.getAnimation().pause();
     spawn(fanBeltRight);
     
-    pistonLeft.setPosition(16,height/2+24);
+    pistonLeft.setPosition(8,height/2+24);
     spawn(pistonLeft);
-    pistonRight.setPosition(width-16,height/2-24);
+    pistonRight.setPosition(width-8,height/2-24);
     spawn(pistonRight);
+   
+    //UI
+    gasBarLeft = new UIBar(color(100,1,1,1));
+    gasBarLeft.setPosition(24,height-24);
+    spawn(gasBarLeft);
+    gasBarRight = new UIBar(color(100,1,1,1));
+    gasBarRight.setPosition(width-24,24);
+    spawn(gasBarRight);
   }
   
   private void startGame() {
@@ -82,6 +90,7 @@ class Game extends GameState {
   //Gets called within update cycle.
   void logic() {
     
+    //prewarm
     if(secondsLeft > 0) {
       if(millis() - secondCountTime > 1000) {
          secondsLeft--; 
@@ -96,6 +105,8 @@ class Game extends GameState {
       //jitter piston
       pistonLeft.setPosition(pistonLeft.getPosition().x,pistonLeft.getPosition().y+cos(frameCount));
       pistonRight.setPosition(pistonRight.getPosition().x,pistonRight.getPosition().y+sin(frameCount));
+      fanBeltLeft.setPosition(fanBeltLeft.getPosition().x,fanBeltLeft.getPosition().y+cos(frameCount)*2.3);
+      fanBeltRight.setPosition(fanBeltRight.getPosition().x,fanBeltRight.getPosition().y+sin(frameCount)*2.7);
     }
   }
   //Main render function of this gamestate.

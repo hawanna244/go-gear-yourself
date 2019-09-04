@@ -9,15 +9,32 @@ class PlayerContainer extends GameObject {
   private float maxGasAmount = 100, 
                 currentGasAmount = 100,
                 score = 0.5;
+                
   private int minGear = 1, maxGear = 6, currentGear = 1, playerPosition = 1;
 
   private GameObject piston;
   
   private boolean shifting = false;
 
+  public PlayerContainer(int position) {
+    this.playerPosition = position;
+  }
+
   //get remaining gas of the current player
   public float getGasRemaining() {
     return currentGasAmount;
+  }
+  
+  public float getMaxGas() {
+    return maxGasAmount;
+  }
+  
+  public int getCurrentGear() {
+    return currentGear;
+  }
+  
+  public float getScore() {
+    return score;
   }
   
   public void render() {

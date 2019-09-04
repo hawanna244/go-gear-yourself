@@ -2,8 +2,15 @@ class Sprite {
 
   //The Sprite class holds an Image and provides some useful image manipulation functions.
   PImage img;
+  
+  //basic constructor
   public Sprite(PImage img) {
     this.img = img;
+  }
+
+  //constructor for abstract sprites
+  public Sprite() {
+    this.img = new PImage();
   }
 
   void update() {
