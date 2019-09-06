@@ -28,13 +28,25 @@ class Game extends GameState {
   }
   //setup the scene.
   void start() {
-    
+    //prequesites 
     secondsLeft = secondsToStart;
     startTime = millis();
     secondCountTime = startTime;
     //create GameObject for game background
     spawn(gameWallpaper);
     
+    //init players
+    playerOne = new PlayerContainer(1);
+    playerTwo = new PlayerContainer(2);
+    playerOne.setOpponent(playerTwo);
+    playerTwo.setOpponent(playerOne);
+    
+    spawn(playerOne);
+    spawn(playerTwo);
+    //playerOne.setOpponent(playerTwo);
+    //playerTwo.setOpponent(playerOne);
+    
+    //init gameobjects
     fanBeltLeft = new GameObject(new Animation(fanBeltImgs,100));
     fanBeltRight = new GameObject(new Animation(fanBeltImgs,100));
     driveLeft = new GameObject(new Animation(driveImgs,100));
@@ -43,6 +55,7 @@ class Game extends GameState {
     pistonLeft = new GameObject(pistonLeftImg);
     pistonRight = new GameObject(pistonRightImg);
     
+    //setup drives
     driveLeft.setPosition(54,height/2);
     driveLeft.setRotation(90);
     driveLeft.getAnimation().pause();
@@ -53,6 +66,7 @@ class Game extends GameState {
     driveRight.getAnimation().pause();
     spawn(driveRight);
     
+    //setup other player components
     fanBeltLeft.setPosition(48,64);
     fanBeltLeft.setRotation(90);
     fanBeltLeft.getAnimation().pause();
@@ -77,8 +91,10 @@ class Game extends GameState {
     spawn(gasBarRight);
   }
   
+  //called when the countdown finished
   private void startGame() {
     gameStarted = true;
+    //start animations on start
     driveLeft.getAnimation().resume();
     driveRight.getAnimation().resume();
     fanBeltLeft.getAnimation().resume();
@@ -100,13 +116,20 @@ class Game extends GameState {
     else if(secondsLeft <= 0 && !gameStarted) {
       startGame();
     }
-    
+    //execute some logic if game is running
     if(gameStarted) {
       //jitter piston
       pistonLeft.setPosition(pistonLeft.getPosition().x,pistonLeft.getPosition().y+cos(frameCount));
       pistonRight.setPosition(pistonRight.getPosition().x,pistonRight.getPosition().y+sin(frameCount));
       fanBeltLeft.setPosition(fanBeltLeft.getPosition().x,fanBeltLeft.getPosition().y+cos(frameCount)*2.3);
       fanBeltRight.setPosition(fanBeltRight.getPosition().x,fanBeltRight.getPosition().y+sin(frameCount)*2.7);
+      
+      //move player piston into required position
+      
+      
+      //check if game is over
+      
+      //one player reached other end?
     }
   }
   //Main render function of this gamestate.
@@ -115,6 +138,7 @@ class Game extends GameState {
 
   }
   
+  //can be used for UI
   void afterDraw() {
     if(!gameStarted) {
       //render countdown
@@ -123,7 +147,6 @@ class Game extends GameState {
   }
   
   //function to fill a member of this class with all required ressources for the application.
-  //TODO
   void loadAssets() {
     gameWallpaper = new GameObject(new Sprite(loadImage("assets/img/static/gameWallpaper.png")));
     
